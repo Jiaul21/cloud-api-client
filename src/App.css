@@ -1,0 +1,40 @@
+.background {
+    background-image: url('../public/bgpic.jpg'); /* Ensure the path is correct */
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+  }
+  .hero-section {
+    background: url('https://source.unsplash.com/random/1920x1080') no-repeat center center;
+    background-size: cover;
+    padding: 100px 0;
+}
+.hero-content {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 10px;
+}
+/* .hero-section {
+  background: url('https://source.unsplash.com/random/1920x1080') no-repeat center center;
+  background-size: cover;
+  padding: 100px 0;
+} */
+
+footer {
+  background-color: #343a40;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+pre {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  overflow-x: auto;
+  font-family: 'Courier New', Courier, monospace;
+}
