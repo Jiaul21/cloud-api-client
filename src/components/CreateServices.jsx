@@ -1,7 +1,7 @@
 
 import React, { useContext, useState } from 'react'
 import { Button, Card, Col, Container, Form, FormControl, FormGroup, FormLabel, Row } from 'react-bootstrap'
-import { UserContext } from '../context/UserContext';
+import { AuthProvider } from '../context/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import axios from 'axios'
@@ -9,7 +9,7 @@ import Header from './Header';
 
 
 const CreateServices = () => {
-    const {user,setUser}=useContext(UserContext);
+    const {user,setUser}=useContext(AuthProvider);
     const navigator=useNavigate();
 
     const formik = useFormik({

@@ -16,7 +16,7 @@ const RouterAll = () => {
   return (
     <>
 
-    {/* <BrowserRouter>
+    <BrowserRouter>
         <Routes>
             <Route path='/' element={<Home />}/>
             <Route path='/home' element={<Home />}/>
@@ -30,7 +30,7 @@ const RouterAll = () => {
         </Routes>
     </BrowserRouter>
 
-    <Footer /> */}
+    <Footer />
     </>
   )
 }

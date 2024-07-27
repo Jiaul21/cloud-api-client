@@ -1,47 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import ListEmployee from './components/employee/ListEmployee'
-import Header from './components/Header'
-import Footer from './components/Footer'
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import AddEmployee from './components/employee/AddEmployee'
-import EditEmployee from './components/employee/EditEmployee'
-import DeleteEmployee from './components/employee/DeleteEmployee'
+// import './App.css'
+import Footer from './components/Footer'
 import Home from './components/Home'
 import Login from './components/Login'
 import Registration from './components/Registration'
 import Template from './components/Template'
-import { UserContext } from './context/UserContext'
-import RouterAll from './RouterAll'
+import MyService from './components/MyService'
 import MyFiles from './components/MyFiles'
+import CreateServices from './components/CreateServices'
+import DeleteService from './components/DeleteService'
+import RouterAll from './RouterAll'
+import { useEffect, useState } from 'react'
+
 
 function App() {
   
+  const [user,setUser]=useState('');
+  const handleUser=((user)=>{
+    setUser(user);
+  })
 
+  useEffect(()=>{
+    user? setUser(JSON.parse(localStorage.getItem('userDetails'))) : setUser('');
+  },[])
 
   return (
     <>
-      <UserContext.Provider value={{user,setUser}}>
+    <RouterAll user={user} setUser={handleUser}/>
+
+    {/* <h1>hello</h1>
         <BrowserRouter>
           <Routes>
               <Route path='/' element={<Home />}/>
               <Route path='/home' element={<Home />}/>
-              <Route path='/login' element={<Login />}/>
+              {/* <Route path='/login' element={<Login />}/>
               <Route path='/registration' element={<Registration />}/>
               <Route path='/api-template' element={<Template />}/>
               <Route path='/api-service' element={<MyService />}/>
               <Route path='/api-file' element={<MyFiles />}/>
               <Route path='/create-service' element={<CreateServices />}/>
-              <Route path='/delete-service/:id' element={<DeleteService />}/>
+              <Route path='/delete-service/:id' element={<DeleteService />}/> 
           </Routes>
         </BrowserRouter>
 
-      <Footer />
-
-      </UserContext.Provider>
-        
+      <Footer />         */}
 
       {/* <BrowserRouter>
         <Header />

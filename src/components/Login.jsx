@@ -2,7 +2,7 @@
 import React, { useContext } from 'react'
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../context/UserContext';
+import { AuthProvider } from '../context/AuthProvider';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios'
@@ -12,7 +12,7 @@ import Header from './Header';
 
 const Login = () => {
 
-  const {user,setUser}=useContext(UserContext);
+  const {user,setUser}=useContext(AuthProvider);
   const navigator=useNavigate();
 
     const formik = useFormik({

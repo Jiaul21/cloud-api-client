@@ -6,12 +6,12 @@ import axios from 'axios'
 
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../context/UserContext';
+import { AuthProvider } from '../context/AuthProvider';
 import Header from './Header';
 
 const Registration = () => {
 
-  const {user,setUser}=useContext(UserContext);
+  const {user,setUser}=useContext(AuthProvider);
   const navigator=useNavigate();
 
     const formik = useFormik({

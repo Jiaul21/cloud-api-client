@@ -1,13 +1,18 @@
 
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button, Container, Nav, Navbar } from 'react-bootstrap'
 import { useHref, useNavigate } from 'react-router-dom'
-import { UserContext } from '../context/UserContext';
+import { AuthProvider } from '../context/AuthProvider';
 
 const Header = () => {
   
   const navigator=useNavigate();
-  const {user,setUser}=useContext(UserContext);
+  // const {user,setUser}=useContext(UserContext);
+  const {user,setUser}=useState('')
+
+  // useEffect(()=>{
+  //   user? setUser(JSON.parse(localStorage.getItem('userDetails'))) : setUser('');
+  // },[setUser])
 
   let profile='LogIn';
   if(user!=null){
