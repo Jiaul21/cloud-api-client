@@ -62,7 +62,6 @@ const Template = () => {
   return (
     
     <div>
-      <Header />
       <CodeView title={"POST API Formate:"} req={postRequest} res={postResponse} />
       <CodeView title={"GET API Formate:"} req={getRequest} res={getResponse} />
       <CodeView title={"UPDATE API Formate:"} req={updateRequest} res={updateResponse} />

@@ -1,35 +1,23 @@
 
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { Button, Container, Nav, Navbar } from 'react-bootstrap'
-import { useHref, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../context/UserContext';
 
 const Header = () => {
   
   const navigator=useNavigate();
-  // const {user,setUser}=useContext(UserContext);
-  const {user,setUser}=useState('')
+  const {user,setUser}=useContext(UserContext);
 
-  // useEffect(()=>{
-  //   user? setUser(JSON.parse(localStorage.getItem('userDetails'))) : setUser('');
-  // },[setUser])
-
-  let profile='LogIn';
-  if(user!=null){
-    profile='LogOut';
-  }
-
-  const handleTemplate=()=>{
-    user!=null? navigator("/api-template") : navigator("/login");
-  }
   const handleService=()=>{
-    user!=null? navigator("/api-service") : navigator("/login");
+    user? navigator("/api-service") : navigator("/login");
   }
   const handleFiles=()=>{
-    user!=null? navigator("/api-file") : navigator("/login");
+    user? navigator("/api-file") : navigator("/login");
   }
   const handleProfile=()=>{
-    if(user!=null){
-      setUser(null);
+    if(user){
+      setUser('');
       navigator("/home");
     }
     else{
@@ -45,12 +33,12 @@ const Header = () => {
         <Container>
           <Navbar.Brand onClick={()=> navigator("/home")}>Home</Navbar.Brand>
           <Nav className="">
-            <Nav.Link onClick={ handleTemplate}>API Templates</Nav.Link>
+            <Nav.Link onClick={()=> navigator("/api-template")}>API Templates</Nav.Link>
             <Nav.Link onClick={ handleService}>My Services</Nav.Link>
             <Nav.Link onClick={ handleFiles}>MY Files</Nav.Link>
             <Nav.Link onClick={()=> navigator("/home")}>AboutUs</Nav.Link>
             <Nav.Link onClick={()=> navigator("/home")}>Contacts</Nav.Link>
-            <Button onClick={ handleProfile}>{profile}</Button>
+            <Button onClick={ handleProfile}>{user? 'LogOut':'LogIn'}</Button>
           </Nav>
         </Container>
       </Navbar>
@@ -59,4 +47,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Header;

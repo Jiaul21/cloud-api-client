@@ -5,13 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios'
-import Header from './Header';
+import { UserContext } from '../context/UserContext';
 
 
 
 const Login = () => {
 
-  const {user,setUser}=useState('');
+  const {user,setUser}=useContext(UserContext);
   const navigator=useNavigate();
 
     const formik = useFormik({
@@ -27,9 +27,13 @@ const Login = () => {
             console.log("form data",formUser)
             axios.post("http://localhost:8080/api-user/login",formUser)
             .then((response)=>{
-                console.log("inside api")
-                console.log(response.data)
-                setUser(response.data)
+                console.log(response)
+                setUser({
+                  id:response.data.id,
+                  userName:response.data.userName,
+                  email:response.data.email,
+                  token:response.data.token
+                })
                 navigator("/home")
             })
             .catch(error =>{
@@ -48,7 +52,6 @@ const Login = () => {
 
   return (
     <div>
-    <Header />
     <Container className="d-flex justify-content-center align-items-center vh-100">
       <Row className="w-100">
         <Col md={6} lg={4} className="mx-auto">

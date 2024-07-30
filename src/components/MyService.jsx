@@ -9,23 +9,17 @@ import CreateServices from './CreateServices';
 
 const MyService = () => {
 
-    const [kyes, setKyes]=useState([]);
-    const [projectName, setProjectName]=useState('');
-    const navigator=useNavigate()
+    const [keys,setKeys]=useState([]);
 
     useEffect(()=>{
         axios.get("http://localhost:8080/api-key/getAll")
         .then((response)=>{
-            setKyes(response.data);
+            setKeys(response.data);
         })
         .catch(error =>{
             console.log(error)
         })
     },[])
-
-    // const handleprojectNameChange=(e)={
-    //     setProjectName(e.target.value);
-    // }
 
     const deleteApiKey=(id)=>{
         navigator(`/delete-service/${id}`)
@@ -37,7 +31,6 @@ const MyService = () => {
 
   return (
     <div>
-      <Header />
       <Container style={{minHeight:"500px"}}>
         <h2 className='text-center'>All API Services</h2>
         <Button onClick={handleNew}> Create New API Service</Button>
@@ -55,9 +48,9 @@ const MyService = () => {
             <tbody>
                 {
                     
-                    kyes.map(key =>
-                        <tr key={key.id}>
-                            <td>{key.id}</td>
+                    keys.map((key, index)=>
+                        <tr key={index}>
+                            <td>{index+1}</td>
                             <td>{key.projectName}</td>
                             <td>{key.apiKey}</td>
                             <td>{key.titalFiles}</td>

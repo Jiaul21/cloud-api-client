@@ -7,18 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 
 const MyFiles = () => {
-    const image = [
-        { src: 'https://img.freepik.com/free-photo/beautiful-view-greenery-bridge-forest-perfect-background_181624-17827.jpg', name: 'Image 1' },
-        { src: 'https://img.freepik.com/free-photo/beautiful-view-greenery-bridge-forest-perfect-background_181624-17827.jpg', name: 'Image 2' },
-        { src: 'https://img.freepik.com/free-photo/beautiful-view-greenery-bridge-forest-perfect-background_181624-17827.jpg', name: 'Image 3' },
-        { src: 'https://img.freepik.com/free-photo/beautiful-view-greenery-bridge-forest-perfect-background_181624-17827.jpg', name: 'Image 4' },
-      ];
-      const video = [
-        { src: 'https://www.w3schools.com/html/mov_bbb.mp4', name: 'Video 1' },
-        { src: 'https://www.w3schools.com/html/movie.mp4', name: 'Video 2' },
-        { src: 'https://www.w3schools.com/html/mov_bbb.mp4', name: 'Video 3' },
-        { src: 'https://www.w3schools.com/html/movie.mp4', name: 'Video 4' },
-      ];
 
     const [images, setImages]=useState([]);
     const [videos, setVideos]=useState([]);
@@ -26,37 +14,30 @@ const MyFiles = () => {
     const navigator=useNavigate()
 
     useEffect(()=>{
-      setImages(image);
-      setVideos(video);
-      // const fetchData = async () => {
-      //   try {
-      //     const response = await axios.get("http://localhost:8080/api-file/getAll-image");
-      //     console.log("response: ",response.data)
-      //     setImages(response.data);
-      //     console.log("images: ",images);
-      //   } catch (error) {
-      //     console.log(error.message);
-      //   }
-      // };
-      // fetchData();
+        axios.get("http://localhost:8080/api-file/getAll-image")
+        .then((response)=>{
+            setAllFiles(response.data);
+        })
+        .catch(error =>{
+            console.log(error)
+        })
     },[])
 
-
+    console.log(allFiles);
     
 
   return (
     <div>
-        <Header />
       <Container className="my-4" style={{minHeight:"500px"}}>
         <h1>All Image Files:</h1>
       <Row>
-        {images.map((image, index) => (
+        {allFiles && allFiles.map((image, index) => image.fileType==='image' && (
           <Col md={4} lg={3} key={index} className="mb-4 d-flex align-items-stretch">
             <Card className="flex-fill">
-              <Card.Img variant="top" src={image.src} />
+              <Card.Img variant="top" src={image.url} />
               <Card.Body className="d-flex flex-column">
-                <Card.Title>{image.name}</Card.Title>
-                <Button variant="primary" href={image.src} target="_blank" className="mt-auto">
+                <Card.Title>{image.fileName}</Card.Title>
+                <Button variant="primary" href={image.url} target= "_blank" className="mt-auto">
                   View Image
                 </Button>
               </Card.Body>
@@ -68,16 +49,16 @@ const MyFiles = () => {
     <Container className="my-4">
     <h1>All Video Files:</h1>
       <Row>
-        {videos.map((video, index) => (
+        {allFiles && allFiles.map((video, index) => video.fileType==='video' && (
           <Col md={4} lg={3} key={index} className="mb-4 d-flex align-items-stretch">
             <Card className="flex-fill">
               <Card.Body className="d-flex flex-column">
                 <video width="100%" height="auto" controls>
-                  <source src={video.src} type="video/mp4" />
+                  <source src={video.url} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
-                <Card.Title className="mt-3">{video.name}</Card.Title>
-                <Button variant="primary" href={video.src} target="_blank" className="mt-auto">
+                <Card.Title className="mt-3">{video.fileName}</Card.Title>
+                <Button variant="primary" href={video.url} target="_blank" className="mt-auto">
                   View Video
                 </Button>
               </Card.Body>

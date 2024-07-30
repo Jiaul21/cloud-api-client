@@ -1,4 +1,4 @@
-import RouterAll from './RouterAll'
+import RouterAll from './router/RouterAll'
 import UserProvider, { UserContext } from './context/UserContext'
 
 
@@ -6,9 +6,7 @@ function App() {
 
   return (
     <>
-    <h1>hello</h1>
       <UserProvider>
-        <h2>hi</h2>
         <RouterAll />
       </UserProvider>
     </>

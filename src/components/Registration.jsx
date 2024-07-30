@@ -7,10 +7,11 @@ import axios from 'axios'
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Header from './Header';
+import { UserContext } from '../context/UserContext';
 
 const Registration = () => {
 
-  const {user,setUser}=useState("");
+  const {user,setUser}=useContext(UserContext);
   const navigator=useNavigate();
 
     const formik = useFormik({

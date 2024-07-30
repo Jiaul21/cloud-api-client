@@ -5,13 +5,9 @@ import { useNavigate } from 'react-router-dom'
 import Header from './Header'
 import { UserContext } from '../context/UserContext'
 const Home = () => {
-  const {user,setUser,handleUser}=useContext(UserContext);
+  const {user,setUser}=useContext(UserContext);
 
   const navigator=useNavigate();
-
-  // useEffect(()=>{
-  //   !user && setUser(user)
-  // },[])
 
   const handleStart=()=>{
     if(user!=null){
@@ -21,11 +17,11 @@ const Home = () => {
       navigator("/login")
     }
   }
+  console.log("Home Page user:", user);
   return (
     <>
       <div>
-        <Header />
-        <header className="hero-section text-black">
+        <header className="hero-section text-black m-5">
           <Container className="text-center">
             <Row>
               <Col>

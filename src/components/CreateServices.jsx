@@ -1,7 +1,6 @@
 
 import React, { useContext, useState } from 'react'
 import { Button, Card, Col, Container, Form, FormControl, FormGroup, FormLabel, Row } from 'react-bootstrap'
-import { AuthProvider } from '../context/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import axios from 'axios'
