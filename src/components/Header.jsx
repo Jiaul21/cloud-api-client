@@ -2,7 +2,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Button, Container, Nav, Navbar } from 'react-bootstrap'
 import { useHref, useNavigate } from 'react-router-dom'
-import { AuthProvider } from '../context/AuthProvider';
 
 const Header = () => {
   

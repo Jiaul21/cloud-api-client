@@ -9,7 +9,7 @@ import Header from './Header';
 
 
 const CreateServices = () => {
-    const {user,setUser}=useContext(AuthProvider);
+    const {user,setUser}=useState("");
     const navigator=useNavigate();
 
     const formik = useFormik({

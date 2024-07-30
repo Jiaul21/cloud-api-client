@@ -1,18 +1,17 @@
 
 import React, { useContext, useEffect, useState } from 'react'
 import { Button, Col, Container, Nav, Navbar, Row } from 'react-bootstrap'
-import { AuthProvider } from '../context/AuthProvider'
 import { useNavigate } from 'react-router-dom'
 import Header from './Header'
+import { UserContext } from '../context/UserContext'
 const Home = () => {
-  // const {user,setUser}=useContext(AuthProvider);
-  const {user,setUser}=useState('')
+  const {user,setUser,handleUser}=useContext(UserContext);
 
   const navigator=useNavigate();
 
   // useEffect(()=>{
-  //   setUser(useContext(AuthProvider).userDetails)
-  // },[setUser])
+  //   !user && setUser(user)
+  // },[])
 
   const handleStart=()=>{
     if(user!=null){
